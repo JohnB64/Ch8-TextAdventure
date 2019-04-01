@@ -44,7 +44,8 @@ public class Game
         escape = new Room("Have Escaped");
         
         // initialise room exits
-        cell.setExit("east", hallway);
+        cell.setExit("Cell Door", hallway);
+        cell.setExit("Window", hallway);
 
         hallway.setExit("west", hanger);
 
@@ -119,6 +120,10 @@ public class Game
             case LOOK:
                 lookAround(command);
                 break;
+                
+            case EXAMINE:
+                examineRoom(command);
+                break;
         }
         return wantToQuit;
     }
@@ -169,6 +174,12 @@ public class Game
     private void lookAround(Command command) 
     {
         System.out.println(currentRoom.getLongDescription());
+    }
+    
+    private void examineRoom(Command command) 
+    {
+        System.out.println(currentRoom.getLongDescription());
+        System.out.println("There is only a toilet and a bed");
     }
 
     /** 
