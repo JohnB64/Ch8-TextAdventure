@@ -34,30 +34,27 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room cell, hallway, hanger, ship, escape;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        cell = new Room("in a Prison Cell");
+        hallway = new Room("in the Hallway");
+        hanger = new Room("in the SpaceShip Hanger");
+        ship = new Room("in a SpaceShip");
+        escape = new Room("Have Escaped");
         
         // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        cell.setExit("east", hallway);
 
-        theater.setExit("west", outside);
+        hallway.setExit("west", hanger);
 
-        pub.setExit("east", outside);
+        hanger.setExit("east", ship);
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
+        ship.setExit("north", escape);
 
-        office.setExit("west", lab);
+        //escape.setExit("west", ship);
 
-        currentRoom = outside;  // start game outside
+        currentRoom = cell;  // start game outside
     }
 
     /**
@@ -84,8 +81,8 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to your new life for eternity!");
+        System.out.println("You have been imprisoned till the end of time, for blowing up an entire galaxy.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -111,12 +108,16 @@ public class Game
                 printHelp();
                 break;
 
-            case GO:
-                goRoom(command);
+            case ENTER:
+                enterRoom(command);
                 break;
 
             case QUIT:
                 wantToQuit = quit(command);
+                break;
+                
+            case LOOK:
+                lookAround(command);
                 break;
         }
         return wantToQuit;
@@ -131,8 +132,6 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -142,11 +141,11 @@ public class Game
      * Try to go in one direction. If there is an exit, enter the new
      * room, otherwise print an error message.
      */
-    private void goRoom(Command command) 
+    private void enterRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            System.out.println("Go where?");
+            // if there is no second word, we don't know where to enter...
+            System.out.println("Enter where?");
             return;
         }
 
@@ -162,6 +161,14 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+    
+    /** 
+     * Gives description of current room.
+     */
+    private void lookAround(Command command) 
+    {
+        System.out.println(currentRoom.getLongDescription());
     }
 
     /** 
