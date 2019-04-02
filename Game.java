@@ -35,6 +35,9 @@ public class Game
     private void createRooms()
     {
         Room cell, hallway, hanger, ship, escape;
+        Item cellKey[] = {new Item("Key")};
+        
+        
       
         // create the rooms
         cell = new Room("in a Prison Cell");
@@ -43,19 +46,41 @@ public class Game
         ship = new Room("in a SpaceShip");
         escape = new Room("Have Escaped");
         
+        
         // initialise room exits
-        cell.setExit("Cell Door", hallway);
-        cell.setExit("Window", hallway);
+        cell.setExit("cell_door", hallway);
+        cell.setExit("window", hallway);
 
-        hallway.setExit("west", hanger);
+        hallway.setExit("hanger_door", hanger);
 
-        hanger.setExit("east", ship);
+        hanger.setExit("spaceship_area", ship);
 
-        ship.setExit("north", escape);
+        ship.setExit("spaceship_cockpit", escape);
+        
+        
+        cell = addItems(cell, cellKey);
+        
+        
 
         //escape.setExit("west", ship);
 
         currentRoom = cell;  // start game outside
+    }
+    
+    private Room addItems(Room room, Item items[]) {
+        
+        
+        //Implement a while loop here instead.
+        
+        for(int i = 0; i < items.length; i++) {
+            
+            room.addItem(items[i]);
+            
+        }
+        
+        return room;
+        
+        
     }
 
     /**
@@ -83,7 +108,8 @@ public class Game
     {
         System.out.println();
         System.out.println("Welcome to your new life for eternity!");
-        System.out.println("You have been imprisoned till the end of time, for blowing up an entire galaxy.");
+        System.out.println("You have been imprisoned till the end of time");
+        System.out.println("for blowing up an entire galaxy.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -123,6 +149,14 @@ public class Game
                 
             case EXAMINE:
                 examineRoom(command);
+                break;
+                
+            case EAT:
+                eatFood(command);
+                break;
+                
+            case TRY:
+                trySomething(command);
                 break;
         }
         return wantToQuit;
@@ -169,6 +203,32 @@ public class Game
     }
     
     /** 
+     * Try to go in one direction. If there is an exit, enter the new
+     * room, otherwise print an error message.
+     */
+    private void trySomething(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            // if there is no second word, we don't know where to enter...
+            System.out.println("Try What?");
+            return;
+        }
+
+        String direction = command.getSecondWord();
+
+        // Try to leave current room.
+        Room nextRoom = currentRoom.getExit(direction);
+
+        if (nextRoom == null) {
+            System.out.println("There is nothing to do!");
+        }
+        else {
+            currentRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
+        }
+    }
+    
+    /** 
      * Gives description of current room.
      */
     private void lookAround(Command command) 
@@ -178,8 +238,12 @@ public class Game
     
     private void examineRoom(Command command) 
     {
-        System.out.println(currentRoom.getLongDescription());
         System.out.println("There is only a toilet and a bed");
+    }
+    
+    private void eatFood(Command command) 
+    {
+        System.out.println("You have nothing to eat");
     }
 
     /** 
