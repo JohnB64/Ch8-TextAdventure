@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    
         
     /**
      * Create the game and initialise its internal map.
@@ -34,8 +35,14 @@ public class Game
      */
     private void createRooms()
     {
-        Room cell, hallway, hanger, ship, escape;
+        Room cell, hallway, hanger, storage, ship, escape;
+        
         Item cellKey[] = {new Item("Key")};
+        
+        Stuffs bed[] = {new Stuffs("Bed")};
+        Stuffs toilet[] = {new Stuffs("Toilet")};
+        
+        
         
         
       
@@ -43,8 +50,11 @@ public class Game
         cell = new Room("in a Prison Cell");
         hallway = new Room("in the Hallway");
         hanger = new Room("in the SpaceShip Hanger");
+        storage = new Room("in the Sorage Room");
         ship = new Room("in a SpaceShip");
         escape = new Room("Have Escaped");
+        
+        
         
         
         // initialise room exits
@@ -52,17 +62,22 @@ public class Game
         cell.setExit("window", hallway);
 
         hallway.setExit("hanger_door", hanger);
+        hallway.setExit("storage_door", storage);
 
         hanger.setExit("spaceship_area", ship);
 
         ship.setExit("spaceship_cockpit", escape);
         
         
+        
         cell = addItems(cell, cellKey);
+        
+        cell = addStuff(cell, bed);
+        cell = addStuff(cell, toilet);
         
         
 
-        //escape.setExit("west", ship);
+        
 
         currentRoom = cell;  // start game outside
     }
@@ -75,6 +90,22 @@ public class Game
         for(int i = 0; i < items.length; i++) {
             
             room.addItem(items[i]);
+            
+        }
+        
+        return room;
+        
+        
+    }
+    
+    private Room addStuff(Room room, Stuffs stuffs[]) {
+        
+        
+        //Implement a while loop here instead.
+        
+        for(int i = 0; i < stuffs.length; i++) {
+            
+            room.addStuff(stuffs[i]);
             
         }
         
@@ -202,6 +233,7 @@ public class Game
         }
     }
     
+    
     /** 
      * Try to go in one direction. If there is an exit, enter the new
      * room, otherwise print an error message.
@@ -219,13 +251,16 @@ public class Game
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
 
-        if (nextRoom == null) {
+        if (nextRoom != null) {
             System.out.println("There is nothing to do!");
         }
         else {
+            
             currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            System.out.println("Needs Key");
+            
         }
+        
     }
     
     /** 
@@ -238,7 +273,11 @@ public class Game
     
     private void examineRoom(Command command) 
     {
-        System.out.println("There is only a toilet and a bed");
+
+        
+        System.out.println(currentRoom.getStuffInRoom());
+        
+        
     }
     
     private void eatFood(Command command) 

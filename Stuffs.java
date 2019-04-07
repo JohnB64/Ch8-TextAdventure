@@ -5,17 +5,17 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Objects
+public class Stuffs
 {
     // instance variables - replace the example below with your own
-    private String objectInfo;
+    private String stuffInfo;
 
     /**
      * Constructor for objects of class Key
      */
-    public Objects()
+    public Stuffs()
     {
-        objectInfo = "";
+        stuffInfo = "";
     }
 
     /**
@@ -24,16 +24,16 @@ public class Objects
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public Objects(String information)
+    public Stuffs(String information)
     {
-        objectInfo = information;
+        stuffInfo = information;
     }
     
-    public String getObjectInfo() {
+    public String getStuffInfo() {
         
-     String object = "" + this.objectInfo + "\n";
+     String stuff = "" + this.stuffInfo + "\n";
      
-     return object;
+     return stuff;
         
     }
 }

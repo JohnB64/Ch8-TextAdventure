@@ -24,6 +24,8 @@ public class Room
 
     private ArrayList<Item> Items;
     
+    private ArrayList<Stuffs> Stuffs;
+    
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -35,6 +37,7 @@ public class Room
         this.description = description;
         exits = new HashMap<String, Room>();
         Items = new ArrayList<Item>();
+        Stuffs = new ArrayList<Stuffs>();
     }
 
     /**
@@ -67,6 +70,17 @@ public class Room
         return "You are " + description + ".\n" + getItems() + getExitString();
     }
     
+    /**
+     * Return a description of the room in the form:
+     *     You are in the kitchen.
+     *     Exits: north west
+     * @return A long description of this room
+     */
+    public String getStuffInRoom()
+    {
+        return getStuff();
+    }
+    
     public String getItems() {
         
         String itemsAvailable = "Items: " + "\n";
@@ -80,17 +94,29 @@ public class Room
         
     }
     
-   /* public String getObjects() {
+    public String getStuff() {
         
-        System.out.println("The Objects in the room are: " + "\n" + objects);
+        String StuffAvailable = "Stuff in Room: " + "\n";
+        for(Stuffs stuffs : Stuffs) {
+            
+            StuffAvailable += stuffs.getStuffInfo();
+            
+        }
+        
+        return StuffAvailable;
         
     }
-    
-    */
+
     
     public void addItem(Item items) {
         
         Items.add(items);
+        
+    }
+    
+    public void addStuff(Stuffs stuff) {
+        
+        Stuffs.add(stuff);
         
     }
 
