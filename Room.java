@@ -74,16 +74,17 @@ public class Room
     }
     
     /**
-     * Return a description of the room in the form:
-     *     You are in the kitchen.
-     *     Exits: north west
-     * @return A long description of this room
+     * Return stuff that is in the current room.
+     * @return stuff in room
      */
     public String getStuffInRoom()
     {
         return getStuff();
     }
     
+    /** 
+     * Gets items from the array and lists them.
+     */
     public String getItems() {
         
         String itemsAvailable = "Items:"+ "\n";
@@ -97,6 +98,9 @@ public class Room
         
     }
     
+    /** 
+     * Gets stuff from the array and lists them.
+     */
     public String getStuff() {
         
         String stuffAvailable = "Stuff in Room:";
@@ -110,13 +114,18 @@ public class Room
         
     }
 
-    
+    /** 
+     * Adds items to the array.
+     */
     public void addItem(Item items) {
         
         Items.add(items);
         
     }
     
+    /** 
+     * Adds stuff to the array.
+     */
     public void addStuff(Stuffs stuff) {
         
         Stuffs.add(stuff);

@@ -34,6 +34,8 @@ public class Game
 
     /**
      * Create all the rooms and link their exits together.
+     * Create all the items and link with rooms.
+     * Create all the stuff and link with rooms.
      */
     private void createRooms()
     {
@@ -67,8 +69,8 @@ public class Game
         spaceship = new Room("in a SpaceShip");
         cargo = new Room("in the Cargo area");
         vehicle = new Room("in the Vehicle area");
-        escape = new Room("Have Escaped");
-        airlock = new Room("Are Dead");
+        escape = new Room("Have Escapend");
+        airlock = new Room("Dead");
         bathroom = new Room("in the Office Bathroom");
         
         
@@ -135,6 +137,9 @@ public class Game
         currentRoom = cell;  // start game outside
     }
     
+    /** 
+     * Adds items from the array.
+     */
     private Room addItems(Room room, Item items[]) {
         
         
@@ -151,6 +156,9 @@ public class Game
         
     }
     
+    /** 
+     * Adds stuff from the array.
+     */
     private Room addStuff(Room room, Stuffs stuffs[]) {
         
         
@@ -242,6 +250,10 @@ public class Game
             case TRY:
                 trySomething(command);
                 break;
+                
+            case BACK:
+                goBack(command);
+                break;
         }
         return wantToQuit;
     }
@@ -288,8 +300,8 @@ public class Game
     
     
     /** 
-     * Try to go in one direction. If there is an exit, enter the new
-     * room, otherwise print an error message.
+     * Try to open a door. If you have a key, you can enter the room,
+     * otherwise tell them you cant.
      */
     private void trySomething(Command command) 
     {
@@ -324,6 +336,17 @@ public class Game
         System.out.println(currentRoom.getLongDescription());
     }
     
+    /** 
+     * Goes back to previous room.
+     */
+    private void goBack(Command command) 
+    {
+        
+    }
+    
+    /** 
+     * Shows stuff in the current room.
+     */
     private void examineRoom(Command command) 
     {
 
@@ -333,6 +356,9 @@ public class Game
         
     }
     
+    /** 
+     * Trys to eat food, but there is no food to be eaten.
+     */
     private void eatFood(Command command) 
     {
         System.out.println("You have nothing to eat");
