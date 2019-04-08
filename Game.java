@@ -1,8 +1,7 @@
 /**
- *  This class is the main class of the "World of Zuul" application. 
- *  "World of Zuul" is a very simple, text based adventure game.  Users 
- *  can walk around some scenery. That's all. It should really be extended 
- *  to make it more interesting!
+ *  This class is the main class of the "Space Prison Escape" application. 
+ *  "Space Prison Escape" is a very simple, text based adventure game.  Users 
+ *  can try to escape the prison, which is not very hard at all.
  * 
  *  To play this game, create an instance of this class and call the "play"
  *  method.
@@ -10,6 +9,9 @@
  *  This main class creates and initialises all the others: it creates all
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
+ *  
+ * @author John Burkert
+ * @version April 15th 2019
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2011.08.10
@@ -35,24 +37,39 @@ public class Game
      */
     private void createRooms()
     {
-        Room cell, hallway, hanger, storage, ship, escape;
+        Room cell, cell2, cell3, cell4, hallway, hanger, cargo, vehicle, 
+        office, storage, spaceship, ship, escape, airlock, bathroom;
         
         Item cellKey[] = {new Item("Key")};
+        Item keyCard[] = {new Item("KeyCard")};
+        Item stuffedAnimal[] = {new Item("StuffedAnimal")};
         
         Stuffs bed[] = {new Stuffs("Bed")};
         Stuffs toilet[] = {new Stuffs("Toilet")};
-        
-        
+        Stuffs box[] = {new Stuffs("Lots of Boxes")};
+        Stuffs cabinet[] = {new Stuffs("Cabinet")};
+        Stuffs desk[] = {new Stuffs("Desk")};
+        Stuffs chair[] = {new Stuffs("Office Chair")};
+        Stuffs nothing[] = {new Stuffs("Nothing")};
         
         
       
         // create the rooms
         cell = new Room("in a Prison Cell");
+        cell2 = new Room("in Prison Cell 2");
+        cell3 = new Room("in Prison Cell 3");
+        cell4 = new Room("in Prison Cell 4");
         hallway = new Room("in the Hallway");
         hanger = new Room("in the SpaceShip Hanger");
-        storage = new Room("in the Sorage Room");
-        ship = new Room("in a SpaceShip");
+        office = new Room("in the Office");
+        storage = new Room("in the Storage Room");
+        ship = new Room("in the SpaceShip Area");
+        spaceship = new Room("in a SpaceShip");
+        cargo = new Room("in the Cargo area");
+        vehicle = new Room("in the Vehicle area");
         escape = new Room("Have Escaped");
+        airlock = new Room("Are Dead");
+        bathroom = new Room("in the Office Bathroom");
         
         
         
@@ -62,18 +79,54 @@ public class Game
         cell.setExit("window", hallway);
 
         hallway.setExit("hanger_door", hanger);
-        hallway.setExit("storage_door", storage);
+        hallway.setExit("office_door", office);
+        hallway.setExit("prison_cell_2", cell2);
+        hallway.setExit("prison_cell_3", cell3);
+        hallway.setExit("prison_cell_4", cell4);
+        hallway.setExit("air_lock_door", airlock);
+        
+        //examine airlock door and have it say do not enter
+        
+        office.setExit("storage_door", storage);
+        office.setExit("strange_door", airlock);
+        office.setExit("bath_room", bathroom);
 
-        hanger.setExit("spaceship_area", ship);
+        hanger.setExit("spaceship_area", spaceship);
+        hanger.setExit("cargo_area", cargo);
+        hanger.setExit("vehicle_area", vehicle);
+        
+        spaceship.setExit("space_ship", ship);
 
         ship.setExit("spaceship_cockpit", escape);
         
         
         
         cell = addItems(cell, cellKey);
+        cell2 = addItems(cell2, stuffedAnimal);
+        
+        storage = addItems(storage, keyCard);
         
         cell = addStuff(cell, bed);
         cell = addStuff(cell, toilet);
+        
+        cell2 = addStuff(cell2, bed);
+        cell2 = addStuff(cell2, toilet);
+        
+        cell3 = addStuff(cell3, bed);
+        cell3 = addStuff(cell3, toilet);
+        
+        cell4 = addStuff(cell4, bed);
+        cell4 = addStuff(cell4, toilet);
+        
+        hallway = addStuff(hallway, nothing);
+        
+        office = addStuff(office, cabinet);
+        office = addStuff(office, desk);
+        office = addStuff(office, chair);
+        
+        storage = addStuff(storage, box);
+        
+        cargo = addStuff(cargo, box);
         
         
 
@@ -242,7 +295,7 @@ public class Game
     {
         if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to enter...
-            System.out.println("Try What?");
+            System.out.println("Try what?");
             return;
         }
 

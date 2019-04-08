@@ -6,12 +6,15 @@ import java.util.Iterator;
 /**
  * Class Room - a room in an adventure game.
  *
- * This class is part of the "World of Zuul" application. 
- * "World of Zuul" is a very simple, text based adventure game.  
+ * This class is part of the "Space Prison Escape" application. 
+ * "Space Prison Escape" is a very simple, text based adventure game.  
  *
  * A "Room" represents one location in the scenery of the game.  It is 
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
+ * 
+ * @author John Burkert
+ * @version April 15th 2019
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2011.08.10
@@ -83,7 +86,7 @@ public class Room
     
     public String getItems() {
         
-        String itemsAvailable = "Items: " + "\n";
+        String itemsAvailable = "Items:"+ "\n";
         for(Item items : Items) {
             
             itemsAvailable += items.getInfo();
@@ -96,14 +99,14 @@ public class Room
     
     public String getStuff() {
         
-        String StuffAvailable = "Stuff in Room: " + "\n";
+        String stuffAvailable = "Stuff in Room:";
         for(Stuffs stuffs : Stuffs) {
             
-            StuffAvailable += stuffs.getStuffInfo();
+            stuffAvailable += stuffs.getStuffInfo();
             
         }
         
-        return StuffAvailable;
+        return stuffAvailable;
         
     }
 
