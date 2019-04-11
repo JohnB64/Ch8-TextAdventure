@@ -50,16 +50,16 @@ public class Game
         Room cell, cell2, cell3, cell4, hallway, hanger, cargo, vehicle, 
         office, storage, spaceship, ship, escape, airlock, bathroom;
         
-        Item cellKey[] = {new Item("Key")};
-        Item keyCard[] = {new Item("KeyCard")};
-        Item stuffedAnimal[] = {new Item("StuffedAnimal")};
+        Item cellKey[] = {new Item("Key🔑")};
+        Item keyCard[] = {new Item("KeyCard💳")};
+        Item stuffedAnimal[] = {new Item("StuffedAnimal🐶")};
         
-        Stuffs bed[] = {new Stuffs("Bed")};
-        Stuffs toilet[] = {new Stuffs("Toilet")};
-        Stuffs box[] = {new Stuffs("Lots of Boxes")};
-        Stuffs cabinet[] = {new Stuffs("Cabinet")};
-        Stuffs desk[] = {new Stuffs("Desk")};
-        Stuffs chair[] = {new Stuffs("Office Chair")};
+        Stuffs bed[] = {new Stuffs("Bed🛏️")};
+        Stuffs toilet[] = {new Stuffs("Toilet🚽")};
+        Stuffs box[] = {new Stuffs("Lots of Boxes📦📦📦")};
+        Stuffs cabinet[] = {new Stuffs("Cabinet🗄")};
+        Stuffs desk[] = {new Stuffs("Desk💻🖥🖱⌨")};
+        Stuffs chair[] = {new Stuffs("Office Chair💺")};
         Stuffs nothing[] = {new Stuffs("Nothing")};
         
         
@@ -77,8 +77,8 @@ public class Game
         spaceship = new Room("in a SpaceShip");
         cargo = new Room("in the Cargo area");
         vehicle = new Room("in the Vehicle area");
-        escape = new Room("Have Escapend");
-        airlock = new Room("Dead");
+        escape = new Room("Have Escapend👏");
+        airlock = new Room("Dead☠");
         bathroom = new Room("in the Office Bathroom");
         
         
@@ -199,7 +199,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Thank you for playing.  Good bye.👋");
     }
 
     /**
@@ -210,7 +210,7 @@ public class Game
         System.out.println();
         System.out.println("Welcome to your new life for eternity!");
         System.out.println("You have been imprisoned till the end of time");
-        System.out.println("for blowing up an entire galaxy.");
+        System.out.println("for blowing up an entire galaxy.🌌");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
