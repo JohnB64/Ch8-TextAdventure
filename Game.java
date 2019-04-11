@@ -21,6 +21,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Room pastRoom;
     
         
     /**
@@ -30,6 +31,13 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+    }
+    
+    public static void main(String[] args) {
+        
+        Game game = new Game();
+        game.play();
+        
     }
 
     /**
@@ -135,6 +143,7 @@ public class Game
         
 
         currentRoom = cell;  // start game outside
+        pastRoom = hallway;
     }
     
     /** 
@@ -341,7 +350,19 @@ public class Game
      */
     private void goBack(Command command) 
     {
-        
+
+        String direction = command.getSecondWord();
+
+        // Try to leave current room.
+        Room nextRoom = pastRoom.getExit(direction);
+
+        if (nextRoom == null) {
+            System.out.println("There is no door!");
+        }
+        else {
+            pastRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
+        }
         
         
     }
