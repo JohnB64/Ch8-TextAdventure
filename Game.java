@@ -265,6 +265,14 @@ public class Game
             case BACK:
                 goBack(command);
                 break;
+                
+            case TAKE:
+                takeThat(command);
+                break;
+                
+            case TALK:
+                talkTo(command);
+                break;
         }
         return wantToQuit;
     }
@@ -378,6 +386,22 @@ public class Game
         
         System.out.println(currentRoom.getStuffInRoom());
         
+        
+    }
+    
+    /** 
+     * Trys to eat food, but there is no food to be eaten.
+     */
+    private void takeThat(Command command) 
+    {
+        
+    }
+    
+    /** 
+     * Trys to eat food, but there is no food to be eaten.
+     */
+    private void talkTo(Command command) 
+    {
         
     }
     
