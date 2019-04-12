@@ -29,7 +29,7 @@ public class Room
     
     private ArrayList<Stuffs> Stuffs;
     
-    private ArrayList<Npc> Npc;
+    private ArrayList<Npc> Npcs;
     
     /**
      * Create a room described "description". Initially, it has
@@ -43,7 +43,7 @@ public class Room
         exits = new HashMap<String, Room>();
         Items = new ArrayList<Item>();
         Stuffs = new ArrayList<Stuffs>();
-        Npc = new ArrayList<Npc>();
+        Npcs = new ArrayList<Npc>();
     }
 
     /**
@@ -125,7 +125,7 @@ public class Room
     public String getNpc() {
         
         String npcAvailable = "Npc's in Room:";
-        for(Npc npcs : Npc) {
+        for(Npc npcs : Npcs) {
             
             npcAvailable += npcs.getNpcInfo();
             
@@ -158,7 +158,7 @@ public class Room
      */
     public void addNpc(Npc npc) {
         
-        Npc.add(npc);
+        Npcs.add(npc);
         
     }
 

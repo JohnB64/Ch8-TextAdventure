@@ -2,12 +2,12 @@
 /**
  * Write a description of class Npc here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author John Burkert
+ * @version April 12th 2019
  */
 public class Npc
 {
-    // instance variables - replace the example below with your own
+    
     private String npcInfo;
 
     /**

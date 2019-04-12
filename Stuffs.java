@@ -7,7 +7,7 @@
  */
 public class Stuffs
 {
-    // instance variables - replace the example below with your own
+    
     private String stuffInfo;
 
     /**

@@ -63,6 +63,7 @@ public class Game
         Item stuffedAnimal[] = {new Item("•StuffedAnimal 🐶", 4)};
         Item toothBrush[] = {new Item("•ToothBrush", 2)};
         Item itemNothing[] = {new Item("Nothing", 0)};
+        Item dignity[] = {new Item("Your Dignity", 100)};
         
         Stuffs bed[] = {new Stuffs("Bed🛏️")};
         Stuffs toilet[] = {new Stuffs("Toilet 🚽")};
@@ -123,6 +124,8 @@ public class Game
         
         
         cell = addItems(cell, cellKey);
+        cell = addItems(cell, dignity);
+        
         cell2 = addItems(cell2, stuffedAnimal);
         cell2 = addItems(cell2, toothBrush);
         
@@ -430,7 +433,12 @@ public class Game
      */
     private void talkTo(Command command) 
     {
-        
+        if(!command.hasSecondWord()) {
+            
+            System.out.println("Talk to Who?");
+            return;
+        }
+
     }
     
     /** 
