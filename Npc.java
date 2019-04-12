@@ -1,6 +1,6 @@
 
 /**
- * Write a description of class Key here.
+ * Write a description of class Npc here.
  *
  * @author (your name)
  * @version (a version number or a date)
@@ -11,7 +11,7 @@ public class Npc
     private String npcInfo;
 
     /**
-     * Constructor for objects of class Key
+     * Constructor for objects of class Npc
      */
     public Npc()
     {
@@ -19,16 +19,18 @@ public class Npc
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Constructor for objects of class Npc with parameters
      */
     public Npc(String information)
     {
         npcInfo = information;
     }
     
+    /**
+     * Returns information for npcs in a room.
+     * 
+     * @return info for npc
+     */
     public String getNpcInfo() {
         
      String npc = "" + this.npcInfo + "\n";

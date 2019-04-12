@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Key here.
+ * The Stuffs class has info that can be accesed when you examine the room
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author John Burkert
+ * @version April 12th 2019
  */
 public class Stuffs
 {
@@ -11,7 +11,7 @@ public class Stuffs
     private String stuffInfo;
 
     /**
-     * Constructor for objects of class Key
+     * Constructor for objects of class Stuffs
      */
     public Stuffs()
     {
@@ -19,16 +19,18 @@ public class Stuffs
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Constructor for objects of class Stuffs with parameters.
      */
     public Stuffs(String information)
     {
         stuffInfo = information;
     }
     
+    /**
+     * Returns information for stuff in a room.
+     * 
+     * @return info for stuff
+     */
     public String getStuffInfo() {
         
      String stuff = "" + this.stuffInfo + "\n";

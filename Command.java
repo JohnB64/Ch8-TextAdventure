@@ -1,6 +1,6 @@
 /**
- * This class is part of the "World of Zuul" application. 
- * "World of Zuul" is a very simple, text based adventure game.  
+ * This class is part of the "Space Prison Escape" application. 
+ * "Space Prison Escape" is a very simple, text based adventure game.  
  *
  * This class holds information about a command that was issued by the user.
  * A command currently consists of two parts: a CommandWord and a string
@@ -12,6 +12,9 @@
  * known) then the CommandWord is UNKNOWN.
  *
  * If the command had only one word, then the second word is <null>.
+ * 
+ * @author John Burkert
+ * @version April 15th 2019
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2011.08.10

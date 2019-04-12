@@ -34,6 +34,10 @@ public class Game
         parser = new Parser();
     }
     
+    /**
+     * Lets you access game from outside of BlueJ using a .jar file
+     * in the directory
+     */    
     public static void main(String[] args) {
         
         Game game = new Game();
@@ -51,11 +55,14 @@ public class Game
         Room cell, cell2, cell3, cell4, hallway, hanger, cargo, vehicle, 
         office, storage, spaceship, ship, escape, airlock, bathroom;
         
+        Npc robot[] = {new Npc("Robot")};
+        
         
         Item cellKey[] = {new Item("•Key 🔑", 2)};
         Item keyCard[] = {new Item("•KeyCard 💳", 0)};
         Item stuffedAnimal[] = {new Item("•StuffedAnimal 🐶", 4)};
         Item toothBrush[] = {new Item("•ToothBrush", 2)};
+        Item itemNothing[] = {new Item("Nothing", 0)};
         
         Stuffs bed[] = {new Stuffs("Bed🛏️")};
         Stuffs toilet[] = {new Stuffs("Toilet 🚽")};
@@ -63,13 +70,13 @@ public class Game
         Stuffs cabinet[] = {new Stuffs("Cabinet 🗄")};
         Stuffs desk[] = {new Stuffs("Desk 💻🖥🖱⌨")};
         Stuffs chair[] = {new Stuffs("Office Chair 💺")};
-        Stuffs nothing[] = {new Stuffs("Nothing")};
+        Stuffs stuffNothing[] = {new Stuffs("Nothing")};
         Stuffs doors[] = {new Stuffs("Lots of Doors")};
         Stuffs sign[] = {new Stuffs("Sign")};
         
         
       
-        // create the rooms
+        
         cell = new Room("in a Prison Cell");
         cell2 = new Room("in Prison Cell 2");
         cell3 = new Room("in Prison Cell 3");
@@ -89,7 +96,7 @@ public class Game
         
         
         
-        // initialise room exits
+        
         cell.setExit("cell_door", hallway);
 
         hallway.setExit("hanger_door", hanger);
@@ -99,7 +106,7 @@ public class Game
         hallway.setExit("prison_cell_4", cell4);
         hallway.setExit("air_lock_door", airlock);
         
-        //examine airlock door and have it say do not enter
+        
         
         office.setExit("storage_door", storage);
         office.setExit("strange_door", airlock);
@@ -118,6 +125,8 @@ public class Game
         cell = addItems(cell, cellKey);
         cell2 = addItems(cell2, stuffedAnimal);
         cell2 = addItems(cell2, toothBrush);
+        
+        hallway = addItems(hallway, itemNothing);
         
         storage = addItems(storage, keyCard);
         
@@ -144,7 +153,7 @@ public class Game
         
         cargo = addStuff(cargo, box);
         
-        
+        hallway = addNpc(hallway, robot);
 
         
 
@@ -182,6 +191,25 @@ public class Game
         for(int i = 0; i < stuffs.length; i++) {
             
             room.addStuff(stuffs[i]);
+            
+        }
+        
+        return room;
+        
+        
+    }
+    
+    /** 
+     * Adds npcs from the array.
+     */
+    private Room addNpc(Room room, Npc npcs[]) {
+        
+        
+        //Implement a while loop here instead.
+        
+        for(int i = 0; i < npcs.length; i++) {
+            
+            room.addNpc(npcs[i]);
             
         }
         
@@ -273,11 +301,7 @@ public class Game
             case BACK:
                 goBack(command);
                 break;
-                
-            case TAKE:
-                takeThat(command);
-                break;
-                
+                 
             case TALK:
                 talkTo(command);
                 break;
@@ -399,17 +423,10 @@ public class Game
         
     }
     }
-    
-    /** 
-     * Trys to eat food, but there is no food to be eaten.
-     */
-    private void takeThat(Command command) 
-    {
         
-    }
     
     /** 
-     * Trys to eat food, but there is no food to be eaten.
+     * Talk to an npc and get back some additional info.
      */
     private void talkTo(Command command) 
     {
