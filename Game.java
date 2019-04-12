@@ -23,6 +23,7 @@ public class Game
     private Room currentRoom;
     private Room pastRoom;
     
+    
         
     /**
      * Create the game and initialise its internal map.
@@ -53,6 +54,7 @@ public class Game
         Item cellKey[] = {new Item("•Key 🔑")};
         Item keyCard[] = {new Item("•KeyCard 💳")};
         Item stuffedAnimal[] = {new Item("•StuffedAnimal 🐶")};
+        Item toothBrush[] = {new Item("•ToothBrush")};
         
         Stuffs bed[] = {new Stuffs("Bed🛏️")};
         Stuffs toilet[] = {new Stuffs("Toilet 🚽")};
@@ -61,6 +63,8 @@ public class Game
         Stuffs desk[] = {new Stuffs("Desk 💻🖥🖱⌨")};
         Stuffs chair[] = {new Stuffs("Office Chair 💺")};
         Stuffs nothing[] = {new Stuffs("Nothing")};
+        Stuffs doors[] = {new Stuffs("Lots of Doors")};
+        Stuffs sign[] = {new Stuffs("Sign")};
         
         
       
@@ -86,24 +90,23 @@ public class Game
         
         // initialise room exits
         cell.setExit("cell_door", hallway);
-        cell.setExit("window", hallway);
 
-        hallway.setExit("hanger_door", hanger);
-        hallway.setExit("office_door", office);
-        hallway.setExit("prison_cell_2", cell2);
-        hallway.setExit("prison_cell_3", cell3);
-        hallway.setExit("prison_cell_4", cell4);
-        hallway.setExit("air_lock_door", airlock);
+        hallway.setExit("hanger_door" + " |", hanger);
+        hallway.setExit("office_door" + " |", office);
+        hallway.setExit("prison_cell_2" + " |", cell2);
+        hallway.setExit("prison_cell_3" + " |", cell3);
+        hallway.setExit("prison_cell_4" + " |", cell4);
+        hallway.setExit("air_lock_door" + " |", airlock);
         
         //examine airlock door and have it say do not enter
         
-        office.setExit("storage_door", storage);
-        office.setExit("strange_door", airlock);
-        office.setExit("bath_room", bathroom);
+        office.setExit("storage_door" + " |", storage);
+        office.setExit("strange_door" + " |", airlock);
+        office.setExit("bath_room" + " |", bathroom);
 
-        hanger.setExit("spaceship_area", spaceship);
-        hanger.setExit("cargo_area", cargo);
-        hanger.setExit("vehicle_area", vehicle);
+        hanger.setExit("spaceship_area" + " |", spaceship);
+        hanger.setExit("cargo_area" + " |", cargo);
+        hanger.setExit("vehicle_area" + " |", vehicle);
         
         spaceship.setExit("space_ship", ship);
 
@@ -113,6 +116,7 @@ public class Game
         
         cell = addItems(cell, cellKey);
         cell2 = addItems(cell2, stuffedAnimal);
+        cell2 = addItems(cell2, toothBrush);
         
         storage = addItems(storage, keyCard);
         
@@ -128,11 +132,12 @@ public class Game
         cell4 = addStuff(cell4, bed);
         cell4 = addStuff(cell4, toilet);
         
-        hallway = addStuff(hallway, nothing);
+        hallway = addStuff(hallway, doors);
         
         office = addStuff(office, cabinet);
         office = addStuff(office, desk);
         office = addStuff(office, chair);
+        office = addStuff(office, sign);
         
         storage = addStuff(storage, box);
         
@@ -143,7 +148,7 @@ public class Game
         
 
         currentRoom = cell;  // start game outside
-        pastRoom = hallway;
+        pastRoom = null;;
     }
     
     /** 
@@ -201,6 +206,8 @@ public class Game
         }
         System.out.println("Thank you for playing.  Good bye. 👋");
     }
+    
+    
 
     /**
      * Print out the opening message for the player.
@@ -237,7 +244,7 @@ public class Game
             case HELP:
                 printHelp();
                 break;
-
+            
             case ENTER:
                 enterRoom(command);
                 break;
@@ -290,6 +297,8 @@ public class Game
         System.out.println("Your command words are:");
         parser.showCommands();
     }
+    
+    
 
     /** 
      * Try to go in one direction. If there is an exit, enter the new
@@ -312,6 +321,7 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            pastRoom = currentRoom;
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
@@ -361,32 +371,32 @@ public class Game
     private void goBack(Command command) 
     {
 
-        String direction = command.getSecondWord();
+         if(pastRoom != null) {
+             
+             currentRoom = pastRoom;
+             System.out.println(currentRoom.getLongDescription());
+             
+            }
 
-        // Try to leave current room.
-        Room nextRoom = pastRoom.getExit(direction);
-
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        }
-        else {
-            pastRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-        }
-        
-        
     }
     
     /** 
-     * Shows stuff in the current room.
+     * Shows stuff in the current room and the code on the sign.
      */
     private void examineRoom(Command command) 
     {
-
+        if(command.hasSecondWord()){
+            
+            System.out.println("The code is 4815162342");
+            
+            return;
         
-        System.out.println(currentRoom.getStuffInRoom());
+        }
+        else {
+            
+            System.out.println(currentRoom.getStuffInRoom());
         
-        
+    }
     }
     
     /** 

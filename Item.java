@@ -1,21 +1,23 @@
 
 /**
- * Write a description of class Key here.
+ * Write a description of class Item here.
  *
- * @author (your name)
+ * @author John Burkert
  * @version (a version number or a date)
  */
 public class Item
 {
     // instance variables - replace the example below with your own
     private String itemInfo;
+    private int itemWeight;
 
     /**
-     * Constructor for objects of class Key
+     * Constructor for objects of class Item
      */
     public Item()
     {
         itemInfo = "";
+        itemWeight = 0;
     }
 
     /**
