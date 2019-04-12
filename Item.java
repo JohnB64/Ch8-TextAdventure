@@ -3,11 +3,11 @@
  * Write a description of class Item here.
  *
  * @author John Burkert
- * @version (a version number or a date)
+ * @version April 12th 2019
  */
 public class Item
 {
-    // instance variables - replace the example below with your own
+    
     private String itemInfo;
     private int itemWeight;
 
@@ -21,20 +21,19 @@ public class Item
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Constructor for objects of class Item with parameters.
      */
-    public Item(String information)
+    public Item(String information, int weight)
     {
         itemInfo = information;
+        itemWeight = weight;
     }
     
     public String getInfo() {
         
      String item = "" + this.itemInfo + "\n";
-     
+     item += "Weight: " + this.itemWeight + "\n";
+
      return item;
         
     }

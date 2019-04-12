@@ -64,8 +64,8 @@ public class Room
 
     /**
      * Return a description of the room in the form:
-     *     You are in the kitchen.
-     *     Exits: north west
+     *     You are in the cell.
+     *     Exits: hallway
      * @return A long description of this room
      */
     public String getLongDescription()
@@ -88,6 +88,7 @@ public class Room
     public String getItems() {
         
         String itemsAvailable = "Items:"+ "\n";
+        
         for(Item items : Items) {
             
             itemsAvailable += items.getInfo();
@@ -97,6 +98,7 @@ public class Room
         return itemsAvailable;
         
     }
+    
     
     /** 
      * Gets stuff from the array and lists them.

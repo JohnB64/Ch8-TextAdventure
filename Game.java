@@ -51,10 +51,11 @@ public class Game
         Room cell, cell2, cell3, cell4, hallway, hanger, cargo, vehicle, 
         office, storage, spaceship, ship, escape, airlock, bathroom;
         
-        Item cellKey[] = {new Item("•Key 🔑")};
-        Item keyCard[] = {new Item("•KeyCard 💳")};
-        Item stuffedAnimal[] = {new Item("•StuffedAnimal 🐶")};
-        Item toothBrush[] = {new Item("•ToothBrush")};
+        
+        Item cellKey[] = {new Item("•Key 🔑", 2)};
+        Item keyCard[] = {new Item("•KeyCard 💳", 0)};
+        Item stuffedAnimal[] = {new Item("•StuffedAnimal 🐶", 4)};
+        Item toothBrush[] = {new Item("•ToothBrush", 2)};
         
         Stuffs bed[] = {new Stuffs("Bed🛏️")};
         Stuffs toilet[] = {new Stuffs("Toilet 🚽")};
@@ -91,22 +92,22 @@ public class Game
         // initialise room exits
         cell.setExit("cell_door", hallway);
 
-        hallway.setExit("hanger_door" + " |", hanger);
-        hallway.setExit("office_door" + " |", office);
-        hallway.setExit("prison_cell_2" + " |", cell2);
-        hallway.setExit("prison_cell_3" + " |", cell3);
-        hallway.setExit("prison_cell_4" + " |", cell4);
-        hallway.setExit("air_lock_door" + " |", airlock);
+        hallway.setExit("hanger_door", hanger);
+        hallway.setExit("office_door", office);
+        hallway.setExit("prison_cell_2", cell2);
+        hallway.setExit("prison_cell_3", cell3);
+        hallway.setExit("prison_cell_4", cell4);
+        hallway.setExit("air_lock_door", airlock);
         
         //examine airlock door and have it say do not enter
         
-        office.setExit("storage_door" + " |", storage);
-        office.setExit("strange_door" + " |", airlock);
-        office.setExit("bath_room" + " |", bathroom);
+        office.setExit("storage_door", storage);
+        office.setExit("strange_door", airlock);
+        office.setExit("bath_room", bathroom);
 
-        hanger.setExit("spaceship_area" + " |", spaceship);
-        hanger.setExit("cargo_area" + " |", cargo);
-        hanger.setExit("vehicle_area" + " |", vehicle);
+        hanger.setExit("spaceship_area", spaceship);
+        hanger.setExit("cargo_area", cargo);
+        hanger.setExit("vehicle_area", vehicle);
         
         spaceship.setExit("space_ship", ship);
 
