@@ -99,23 +99,35 @@ public class Game
         
         
         cell.setExit("cell_door", hallway);
+        
+        cell2.setExit("cell_door", hallway);
+        
+        cell3.setExit("cell_door", hallway);
+        
+        cell4.setExit("cell_door", hallway);
 
         hallway.setExit("hanger_door", hanger);
         hallway.setExit("office_door", office);
+        hallway.setExit("your_cell", cell);
         hallway.setExit("prison_cell_2", cell2);
         hallway.setExit("prison_cell_3", cell3);
         hallway.setExit("prison_cell_4", cell4);
         hallway.setExit("air_lock_door", airlock);
         
         
-        
         office.setExit("storage_door", storage);
         office.setExit("strange_door", airlock);
         office.setExit("bath_room", bathroom);
+        office.setExit("hallway", hallway);
+        
+        storage.setExit("office_door", office);
+        
+        bathroom.setExit("office_door", office);
 
         hanger.setExit("spaceship_area", spaceship);
         hanger.setExit("cargo_area", cargo);
         hanger.setExit("vehicle_area", vehicle);
+        hanger.setExit("hallway", hallway);
         
         spaceship.setExit("space_ship", ship);
 
