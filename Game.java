@@ -59,11 +59,11 @@ public class Game
         
         
         Item cellKey[] = {new Item("•Key 🔑", 2)};
-        Item keyCard[] = {new Item("•KeyCard 💳", 0)};
         Item stuffedAnimal[] = {new Item("•StuffedAnimal 🐶", 4)};
         Item toothBrush[] = {new Item("•ToothBrush", 2)};
         Item itemNothing[] = {new Item("Nothing", 0)};
         Item dignity[] = {new Item("Your Dignity", 100)};
+        Item guilt[] = {new Item("Your Guilt", 0)};
         
         Stuffs bed[] = {new Stuffs("Bed🛏️")};
         Stuffs toilet[] = {new Stuffs("Toilet 🚽")};
@@ -137,13 +137,16 @@ public class Game
         
         cell = addItems(cell, cellKey);
         cell = addItems(cell, dignity);
+        cell = addItems(cell, guilt);
         
         cell2 = addItems(cell2, stuffedAnimal);
         cell2 = addItems(cell2, toothBrush);
         
+        bathroom = addItems(bathroom, toothBrush);
+        
         hallway = addItems(hallway, itemNothing);
         
-        storage = addItems(storage, keyCard);
+        storage = addItems(storage, itemNothing);
         
         cell = addStuff(cell, bed);
         cell = addStuff(cell, toilet);
@@ -162,8 +165,8 @@ public class Game
         office = addStuff(office, cabinet);
         office = addStuff(office, desk);
         office = addStuff(office, chair);
-        office = addStuff(office, sign);
         
+        storage = addStuff(storage, sign);        
         storage = addStuff(storage, box);
         
         cargo = addStuff(cargo, box);
@@ -181,14 +184,15 @@ public class Game
      */
     private Room addItems(Room room, Item items[]) {
         
+        int i = 0;
         
-        //Implement a while loop here instead.
-        
-        for(int i = 0; i < items.length; i++) {
+        while(i < items.length) {
             
             room.addItem(items[i]);
             
+            i++;
         }
+        
         
         return room;
         
@@ -199,18 +203,17 @@ public class Game
      * Adds stuff from the array.
      */
     private Room addStuff(Room room, Stuffs stuffs[]) {
+
+        int i = 0;
         
-        
-        //Implement a while loop here instead.
-        
-        for(int i = 0; i < stuffs.length; i++) {
+        while(i < stuffs.length) {
             
             room.addStuff(stuffs[i]);
             
+            i++;
         }
-        
+    
         return room;
-        
         
     }
     
@@ -219,17 +222,16 @@ public class Game
      */
     private Room addNpc(Room room, Npc npcs[]) {
         
+        int i = 0;
         
-        //Implement a while loop here instead.
-        
-        for(int i = 0; i < npcs.length; i++) {
+        while(i < npcs.length) {
             
             room.addNpc(npcs[i]);
             
+            i++;
         }
         
         return room;
-        
         
     }
 
@@ -308,11 +310,7 @@ public class Game
             case EAT:
                 eatFood(command);
                 break;
-                
-            case TRY:
-                trySomething(command);
-                break;
-                
+
             case BACK:
                 goBack(command);
                 break;
@@ -365,36 +363,6 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
-    }
-    
-    
-    /** 
-     * Try to open a door. If you have a key, you can enter the room,
-     * otherwise tell them you cant.
-     */
-    private void trySomething(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to enter...
-            System.out.println("Try what?");
-            return;
-        }
-
-        String direction = command.getSecondWord();
-
-        // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(direction);
-
-        if (nextRoom != null) {
-            System.out.println("There is nothing to do!");
-        }
-        else {
-            
-            currentRoom = nextRoom;
-            System.out.println("Needs Key");
-            
-        }
-        
     }
     
     /** 
@@ -459,6 +427,7 @@ public class Game
     private void eatFood(Command command) 
     {
         System.out.println("You have nothing to eat");
+        System.out.println("and never will");
     }
 
     /** 
