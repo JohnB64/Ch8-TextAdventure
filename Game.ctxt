@@ -9,6 +9,7 @@ comment10.target=void\ enterRoom(Command)
 comment10.text=\ \r\n\ Try\ to\ go\ in\ one\ direction.\ If\ there\ is\ an\ exit,\ enter\ the\ new\r\n\ room,\ otherwise\ print\ an\ error\ message.\r\n
 comment11.params=command
 comment11.target=void\ enterCode(Command)
+comment11.text=\ \r\n\ Entering\ the\ code\ command\ allows\ you\ to\ enter\ the\ spaceship\ cockpit\r\n\ and\ escape.\r\n
 comment12.params=command
 comment12.target=void\ lookAround(Command)
 comment12.text=\ \r\n\ Gives\ description\ of\ current\ room.\r\n

@@ -1,4 +1,4 @@
-
+ 
 /**
  *  This class is the main class of the "Space Prison Escape" application. 
  *  "Space Prison Escape" is a very simple, text based adventure game.  Users 
@@ -63,25 +63,27 @@ public class Game
         Item cellKey[] = {new Item("•Key 🔑", 2)};
         Item stuffedAnimal[] = {new Item("•StuffedAnimal 🐶", 4)};
         Item toothBrush[] = {new Item("•ToothBrush", 2)};
-        Item itemNothing[] = {new Item("Nothing", 0)};
-        Item dignity[] = {new Item("Your Dignity", 100)};
-        Item guilt[] = {new Item("Your Guilt", 0)};
+        Item itemNothing[] = {new Item("•Nothing", 0)};
+        Item dignity[] = {new Item("•Your Dignity", 100)};
+        Item guilt[] = {new Item("•Your Guilt", 0)};
         
-        Stuffs bed[] = {new Stuffs("Bed🛏️")};
-        Stuffs toilet[] = {new Stuffs("Toilet 🚽")};
-        Stuffs box[] = {new Stuffs("Lots of Boxes 📦📦📦")};
-        Stuffs cabinet[] = {new Stuffs("Cabinet 🗄")};
-        Stuffs desk[] = {new Stuffs("Desk 💻🖥🖱⌨")};
-        Stuffs chair[] = {new Stuffs("Office Chair 💺")};
-        Stuffs stuffNothing[] = {new Stuffs("Nothing")};
-        Stuffs doors[] = {new Stuffs("Lots of Doors")};
-        Stuffs sign[] = {new Stuffs("Sign with Numbers")};
-        Stuffs sign2[] = {new Stuffs("Enter Code to enter Cockpit")};
+        Stuffs bed[] = {new Stuffs(" Bed")};
+        Stuffs toilet[] = {new Stuffs(" Toilet 🚽")};
+        Stuffs box[] = {new Stuffs(" Lots of Boxes 📦 📦 📦")};
+        Stuffs vehicles[] = {new Stuffs(" Lots of Cars and Stuff")};
+        Stuffs stuff[] = {new Stuffs(" Lots of Spaceships and Stuff")};
+        Stuffs cabinet[] = {new Stuffs(" Cabinet ⌸")};
+        Stuffs desk[] = {new Stuffs(" Desk 💻🖥🖱⌨")};
+        Stuffs chair[] = {new Stuffs(" Office Chair 💺")};
+        Stuffs stuffNothing[] = {new Stuffs(" Nothing ☐")};
+        Stuffs doors[] = {new Stuffs(" Lots of Doors 🚪 🚪 🚪")};
+        Stuffs sign[] = {new Stuffs(" Sign with Numbers ⌺")};
+        Stuffs sign2[] = {new Stuffs(" Enter Code to enter Cockpit")};
         
         
       
         
-        cell = new Room("in a Prison Cell.");
+        cell = new Room("in a Prison Cell");
         cell2 = new Room("in Prison Cell 2");
         cell3 = new Room("in Prison Cell 3");
         cell4 = new Room("in Prison Cell 4");
@@ -158,6 +160,16 @@ public class Game
         
         storage = addItems(storage, itemNothing);
         
+        office = addItems(office, itemNothing);
+        
+        cargo = addItems(cargo, itemNothing);
+        
+        vehicle = addItems(vehicle, itemNothing);
+        
+        hanger = addItems(hanger, itemNothing);
+        
+        ship = addItems(ship, itemNothing);
+        
         cell = addStuff(cell, bed);
         cell = addStuff(cell, toilet);
         
@@ -178,6 +190,8 @@ public class Game
 
         spaceship = addStuff(spaceship, sign2);
         
+        ship = addStuff(ship, stuff);
+        
         office = addStuff(office, cabinet);
         office = addStuff(office, desk);
         office = addStuff(office, chair);
@@ -186,6 +200,10 @@ public class Game
         storage = addStuff(storage, box);
         
         cargo = addStuff(cargo, box);
+        
+        vehicle = addStuff(vehicle, vehicles);
+        
+        hanger = addStuff(hanger, stuff);
 
         currentRoom = cell;  // start game outside
         pastRoom = null;
@@ -360,6 +378,10 @@ public class Game
         }
     }
     
+    /** 
+     * Entering the code command allows you to enter the spaceship cockpit
+     * and escape.
+     */
     private void enterCode(Command command) {
         
         String direction = command.getSecondWord();
