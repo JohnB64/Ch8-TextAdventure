@@ -56,10 +56,7 @@ public class Game
         Room cell, cell2, cell3, cell4, hallwayCenter, hallwayRight, hallwayLeft, 
         hanger, cargo, vehicle, 
         office, storage, spaceship, ship, escape, airlock, bathroom;
-        
-        
-        
-        
+
         Item cellKey[] = {new Item("•Key 🔑", 2)};
         Item stuffedAnimal[] = {new Item("•StuffedAnimal 🐶", 4)};
         Item toothBrush[] = {new Item("•ToothBrush", 2)};
@@ -79,10 +76,7 @@ public class Game
         Stuffs doors[] = {new Stuffs(" Lots of Doors 🚪 🚪 🚪")};
         Stuffs sign[] = {new Stuffs(" Sign with Numbers ⌺")};
         Stuffs sign2[] = {new Stuffs(" Enter Code to enter Cockpit")};
-        
-        
-      
-        
+
         cell = new Room("in a Prison Cell");
         cell2 = new Room("in Prison Cell 2");
         cell3 = new Room("in Prison Cell 3");
@@ -140,9 +134,7 @@ public class Game
 
         spaceship.setExit("spaceship_cockpit", spaceship);
         spaceship.setExit("bathroom", bathroom);
-        
-        
-        
+
         cell = addItems(cell, cellKey);
         cell = addItems(cell, dignity);
         cell = addItems(cell, guilt);
