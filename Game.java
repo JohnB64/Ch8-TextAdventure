@@ -1,3 +1,4 @@
+
 /**
  *  This class is the main class of the "Space Prison Escape" application. 
  *  "Space Prison Escape" is a very simple, text based adventure game.  Users 
@@ -22,9 +23,8 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Room pastRoom;
-    
-    
-        
+    private Room cockpitRoom;
+
     /**
      * Create the game and initialise its internal map.
      */
@@ -32,6 +32,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+
     }
     
     /**
@@ -52,10 +53,11 @@ public class Game
      */
     private void createRooms()
     {
-        Room cell, cell2, cell3, cell4, hallway, hanger, cargo, vehicle, 
+        Room cell, cell2, cell3, cell4, hallwayCenter, hallwayRight, hallwayLeft, 
+        hanger, cargo, vehicle, 
         office, storage, spaceship, ship, escape, airlock, bathroom;
         
-        Npc robot[] = {new Npc("Robot")};
+        
         
         
         Item cellKey[] = {new Item("•Key 🔑", 2)};
@@ -73,16 +75,19 @@ public class Game
         Stuffs chair[] = {new Stuffs("Office Chair 💺")};
         Stuffs stuffNothing[] = {new Stuffs("Nothing")};
         Stuffs doors[] = {new Stuffs("Lots of Doors")};
-        Stuffs sign[] = {new Stuffs("Sign")};
+        Stuffs sign[] = {new Stuffs("Sign with Numbers")};
+        Stuffs sign2[] = {new Stuffs("Enter Code to enter Cockpit")};
         
         
       
         
-        cell = new Room("in a Prison Cell");
+        cell = new Room("in a Prison Cell.");
         cell2 = new Room("in Prison Cell 2");
         cell3 = new Room("in Prison Cell 3");
         cell4 = new Room("in Prison Cell 4");
-        hallway = new Room("in the Hallway");
+        hallwayCenter = new Room("in the Center Hallway");
+        hallwayRight = new Room("in the Right Hallway");
+        hallwayLeft = new Room("in the Left Hallway");
         hanger = new Room("in the SpaceShip Hanger");
         office = new Room("in the Office");
         storage = new Room("in the Storage Room");
@@ -90,48 +95,49 @@ public class Game
         spaceship = new Room("in a SpaceShip");
         cargo = new Room("in the Cargo area");
         vehicle = new Room("in the Vehicle area");
-        escape = new Room("Have Escapend👏");
-        airlock = new Room("Dead☠");
+        escape = new Room("Have Escapend👏. Type 'quit' to quit");
+        airlock = new Room("Dead☠. Type 'quit' to quit");
         bathroom = new Room("in the Office Bathroom");
-        
-        
-        
-        
-        
-        cell.setExit("cell_door", hallway);
-        
-        cell2.setExit("cell_door", hallway);
-        
-        cell3.setExit("cell_door", hallway);
-        
-        cell4.setExit("cell_door", hallway);
 
-        hallway.setExit("hanger_door", hanger);
-        hallway.setExit("office_door", office);
-        hallway.setExit("your_cell", cell);
-        hallway.setExit("prison_cell_2", cell2);
-        hallway.setExit("prison_cell_3", cell3);
-        hallway.setExit("prison_cell_4", cell4);
-        hallway.setExit("air_lock_door", airlock);
+        cell.setExit("cell_door", hallwayCenter);
         
+        cell2.setExit("cell_door", hallwayCenter);
+        
+        cell3.setExit("cell_door", hallwayCenter);
+        
+        cell4.setExit("cell_door", hallwayCenter);
+
+        hallwayRight.setExit("hanger_door", hanger);
+        hallwayRight.setExit("air_lock_door", airlock);
+        hallwayRight.setExit("center_hallway", hallwayCenter);
+        
+        hallwayLeft.setExit("office_door", office);
+        hallwayLeft.setExit("center_hallway", hallwayCenter);
+        
+        hallwayCenter.setExit("your_cell", cell);
+        hallwayCenter.setExit("prison_cell_2", cell2);
+        hallwayCenter.setExit("prison_cell_3", cell3);
+        hallwayCenter.setExit("prison_cell_4", cell4);
+        hallwayCenter.setExit("right_hallway", hallwayRight);
+        hallwayCenter.setExit("left_hallway", hallwayLeft);
         
         office.setExit("storage_door", storage);
-        office.setExit("strange_door", airlock);
-        office.setExit("bath_room", bathroom);
-        office.setExit("hallway", hallway);
+        office.setExit("bathroom", bathroom);
+        office.setExit("left_hallway", hallwayLeft);
         
         storage.setExit("office_door", office);
         
         bathroom.setExit("office_door", office);
 
-        hanger.setExit("spaceship_area", spaceship);
+        hanger.setExit("spaceship_area", ship);
         hanger.setExit("cargo_area", cargo);
         hanger.setExit("vehicle_area", vehicle);
-        hanger.setExit("hallway", hallway);
+        hanger.setExit("right_hallway", hallwayRight);
         
-        spaceship.setExit("space_ship", ship);
+        ship.setExit("space_ship", spaceship);
 
-        ship.setExit("spaceship_cockpit", escape);
+        spaceship.setExit("spaceship_cockpit", spaceship);
+        spaceship.setExit("bathroom", bathroom);
         
         
         
@@ -144,7 +150,11 @@ public class Game
         
         bathroom = addItems(bathroom, toothBrush);
         
-        hallway = addItems(hallway, itemNothing);
+        hallwayCenter = addItems(hallwayCenter, itemNothing);
+        
+        hallwayRight = addItems(hallwayRight, itemNothing);
+        
+        hallwayLeft = addItems(hallwayLeft, itemNothing);
         
         storage = addItems(storage, itemNothing);
         
@@ -160,7 +170,13 @@ public class Game
         cell4 = addStuff(cell4, bed);
         cell4 = addStuff(cell4, toilet);
         
-        hallway = addStuff(hallway, doors);
+        hallwayCenter = addStuff(hallwayCenter, doors);
+        
+        hallwayRight = addStuff(hallwayRight, doors);
+        
+        hallwayLeft = addStuff(hallwayLeft, doors);
+
+        spaceship = addStuff(spaceship, sign2);
         
         office = addStuff(office, cabinet);
         office = addStuff(office, desk);
@@ -170,17 +186,14 @@ public class Game
         storage = addStuff(storage, box);
         
         cargo = addStuff(cargo, box);
-        
-        hallway = addNpc(hallway, robot);
-
-        
 
         currentRoom = cell;  // start game outside
-        pastRoom = null;;
+        pastRoom = null;
+        cockpitRoom = escape;
     }
     
     /** 
-     * Adds items from the array.
+     * Adds items from the array into the room.
      */
     private Room addItems(Room room, Item items[]) {
         
@@ -193,14 +206,12 @@ public class Game
             i++;
         }
         
-        
         return room;
-        
         
     }
     
     /** 
-     * Adds stuff from the array.
+     * Adds stuff from the array into the room.
      */
     private Room addStuff(Room room, Stuffs stuffs[]) {
 
@@ -213,24 +224,6 @@ public class Game
             i++;
         }
     
-        return room;
-        
-    }
-    
-    /** 
-     * Adds npcs from the array.
-     */
-    private Room addNpc(Room room, Npc npcs[]) {
-        
-        int i = 0;
-        
-        while(i < npcs.length) {
-            
-            room.addNpc(npcs[i]);
-            
-            i++;
-        }
-        
         return room;
         
     }
@@ -252,8 +245,6 @@ public class Game
         }
         System.out.println("Thank you for playing.  Good bye. 👋");
     }
-    
-    
 
     /**
      * Print out the opening message for the player.
@@ -266,7 +257,11 @@ public class Game
         System.out.println("for blowing up an entire galaxy. 🌌" + "\n");
         System.out.println("Lucky for you, the guard was sleeping");
         System.out.println("and you took the cell key" + "\n");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("Type '" + CommandWord.HELP + "' if you need help");
+        System.out.println("and for additional commands");
+        System.out.println();
+        System.out.println("Use 'enter' to move through the rooms");
+        System.out.println("and 'examine' to gather information");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
@@ -314,10 +309,11 @@ public class Game
             case BACK:
                 goBack(command);
                 break;
-                 
-            case TALK:
-                talkTo(command);
+                
+            case CODE:
+                enterCode(command);
                 break;
+
         }
         return wantToQuit;
     }
@@ -332,11 +328,10 @@ public class Game
     private void printHelp() 
     {
         System.out.println();
+        System.out.println("The hidden code is: '4815162342'");
         System.out.println("Your command words are:");
         parser.showCommands();
     }
-    
-    
 
     /** 
      * Try to go in one direction. If there is an exit, enter the new
@@ -363,6 +358,21 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+    
+    private void enterCode(Command command) {
+        
+        String direction = command.getSecondWord();
+
+        Room nextRoom = currentRoom.getExit(direction);
+
+        if (nextRoom != null) {
+            System.out.println("There is no door!");
+        }
+        else {
+            System.out.println(cockpitRoom.getLongDescription());
+        }
+
     }
     
     /** 
@@ -406,21 +416,7 @@ public class Game
         
     }
     }
-        
-    
-    /** 
-     * Talk to an npc and get back some additional info.
-     */
-    private void talkTo(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            
-            System.out.println("Talk to Who?");
-            return;
-        }
 
-    }
-    
     /** 
      * Trys to eat food, but there is no food to be eaten.
      */

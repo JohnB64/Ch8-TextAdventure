@@ -31,6 +31,7 @@ public class CommandWords
                 validCommands.put(command.toString(), command);
             }
         }
+
     }
 
     /**
@@ -49,6 +50,7 @@ public class CommandWords
             return CommandWord.UNKNOWN;
         }
     }
+ 
     
     /**
      * Check whether a given String is a valid command word. 

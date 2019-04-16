@@ -46,6 +46,15 @@ public class Command
     {
         return commandWord;
     }
+    
+    /**
+     * Return the command word (the first word) of this command.
+     * @return The command word.
+     */
+    public CommandWord getCodeCommandWord()
+    {
+        return commandWord;
+    }
 
     /**
      * @return The second word of this command. Returns null if there was no
