@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=TransporterRoom
+comment0.text=\r\n\ Chooses\ a\ random\ room\ and\ and\ sends\ the\ player\ to\ that\ room.\r\n\r\n\ @author\ John\ Burkert\r\n\ @version\ April\ 22nd\ 2019\r\n
+comment1.params=description
+comment1.target=TransporterRoom(java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ TransporterRoom\r\n
+numComments=2
