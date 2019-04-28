@@ -13,20 +13,20 @@ import java.util.Random;
  */
 public class TransporterRoom extends Room
 {
-
+    private Room randomroom;
     /**
      * Constructor for objects of class TransporterRoom
      */
     public TransporterRoom(String description) {
         
          super(description);
-        
+         Random room = new Random();
     }    
     
     /**
      * Returns a random room
      */
-  /**  public Room getExit(String direction)
+    public Room getExit(String direction)
     {
         return findRandomRoom();
     }
@@ -34,10 +34,11 @@ public class TransporterRoom extends Room
     /**
      * Randomly chooses a random room
      */
-   /** private Room findRandomRoom()
+    private Room findRandomRoom()
     {
-        
+
+        return randomroom;
     }
     
-    */
+    
 }
