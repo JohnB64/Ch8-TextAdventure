@@ -23,7 +23,6 @@ public class TransporterRoom extends Room
         
          super(description);
          
-         
     }    
     
     /**
